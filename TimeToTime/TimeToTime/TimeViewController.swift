@@ -12,6 +12,8 @@ import CoreData
 class TimeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
 	@IBOutlet var tableView: UITableView!
+	@IBOutlet var editButton: UIBarButtonItem!
+	
 	
 	var timer: NSTimer!
 	
@@ -73,6 +75,7 @@ class TimeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		
 		let date = NSDate();
 		let formatter = NSDateFormatter();
+		
 		
 		let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! CustomTimeCell
 		
@@ -146,6 +149,32 @@ class TimeViewController: UIViewController, UITableViewDelegate, UITableViewData
 			}
 		default:
 			return
+		}
+	}
+	
+	func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+		return true
+	}
+	
+	func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+		let itemToMove = timezoneManage[fromIndexPath.row]
+		timezoneManage.removeAtIndex(fromIndexPath.row)
+		timezoneManage.insert(itemToMove, atIndex: toIndexPath.row)
+	}
+	
+	// MARK: - Action
+	
+	@IBAction func startEditing(sender: UIBarButtonItem) {
+		// tableView.editing = !tableView.editing
+		
+		if tableView.editing {
+			tableView.setEditing(false, animated: true)
+			editButton.title = "Edit"
+			editButton.style = UIBarButtonItemStyle.Plain
+		}	else {
+			tableView.setEditing(true, animated: true)
+			editButton.title = "Done"
+			editButton.style =  UIBarButtonItemStyle.Done
 		}
 	}
 }

@@ -204,6 +204,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="x77-zi-qSi">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="z75-2C-16i">
+                            <connections>
+                                <action selector="startEditing:" destination="hco-Aq-DWK" id="VRk-Dl-gIF"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="gQS-K0-Jfr">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" id="7Wk-vP-s7a"/>
@@ -212,6 +217,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="editButton" destination="z75-2C-16i" id="HNf-47-gDA"/>
                         <outlet property="tableView" destination="8zS-UG-Yf0" id="mdX-3R-zeY"/>
                     </connections>
                 </viewController>
